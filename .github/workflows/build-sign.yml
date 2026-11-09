@@ -23,16 +23,16 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: ghcr.io/cloudveteran/trust-center-lite:latest
       - name: Generate SBOM
         uses: anchore/sbom-action@v0
         with:
-          image: ghcr.io/${{ github.repository }}@${{ steps.push.outputs.digest }}
+          image: ghcr.io/cloudveteran/trust-center-lite@${{ steps.push.outputs.digest }}
           format: spdx-json
           output-file: sbom.spdx.json
       - name: Sign image and attach SBOM
         env:
-          IMAGE: ghcr.io/${{ github.repository }}@${{ steps.push.outputs.digest }}
+          IMAGE: ghcr.io/cloudveteran/trust-center-lite@${{ steps.push.outputs.digest }}
         run: |
           cosign sign --yes "$IMAGE"
           cosign attest --yes --type spdxjson --predicate sbom.spdx.json "$IMAGE"
