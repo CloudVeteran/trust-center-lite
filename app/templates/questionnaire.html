@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Security Questionnaire</title></head>
+<body>
+<h1>Security Questionnaire</h1>
+{% for item in items %}
+<h2>{{ item.question }}</h2>
+<p>{{ item.answer }}</p>
+<p>NIST 800-53: {{ item.controls | join(", ") }}</p>
+{% endfor %}
+<p><a href="/">Home</a></p>
+</body></html>
