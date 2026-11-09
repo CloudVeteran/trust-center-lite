@@ -1,3 +1,9 @@
+Trust Center Lite is a mini security trust center like the ones companies publish for customers. Screenshots of the live pages are below.
+
+![Home page](screenshots/home.png)
+![Security posture page](screenshots/posture.png)
+![Security questionnaire page](screenshots/questionnaire.png)
+
 \# Trust Center Lite
 
 
