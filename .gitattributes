@@ -1,0 +1,10 @@
+# Flask templates are Jinja2 (render_template). Linguist otherwise counts
+# every .html file as HTML, which is enough to label this repository HTML.
+# Keep the Jinja classification for highlighting, and leave the templates
+# out of the language stats so the bar reflects the hand-written app code.
+app/templates/**/*.html linguist-language=Jinja linguist-detectable=false
+
+# SPDX SBOM produced by .github/workflows/build-sign.yml. Generated output,
+# not hand-written source. Not committed today; this keeps it out of the
+# stats if it is added later.
+sbom.spdx.json linguist-generated
