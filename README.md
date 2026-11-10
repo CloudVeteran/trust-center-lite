@@ -6,6 +6,22 @@ Trust Center Lite is a mini security trust center like the ones companies publis
 ![Security posture page](screenshots/posture.png)
 ![Security questionnaire page](screenshots/questionnaire.png)
 
+## How it ships
+
+```mermaid
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "Inter, Arial, sans-serif", "primaryColor": "#e8f2fb", "primaryTextColor": "#10233c", "primaryBorderColor": "#1d4e89", "lineColor": "#1d4e89"}}}%%
+flowchart LR
+    A["Code pushed<br/>to GitHub"] --> B["GitHub Actions<br/>builds the container<br/>Chainguard Python"]
+    B --> C["Published to GitHub<br/>Container Registry"]
+    C --> D["SBOM lists every<br/>package (SPDX)<br/>CM-8 / SR-4"]
+    D --> E["Image signed<br/>with cosign<br/>keyless, Sigstore<br/>SI-7 / SR-4<br/>SBOM attached"]
+    E --> F["Anyone can verify<br/>the signature"]
+```
+
+A push to `main` builds the image from `cgr.dev/chainguard/python`, publishes `ghcr.io/cloudveteran/trust-center-lite:latest`, then attaches an SPDX SBOM and a keyless Sigstore signature.
+
+[PNG version](docs/pipeline.png)
+
 ## How it's built
 - Written in Flask and served by gunicorn on the minimal `cgr.dev/chainguard/python` image, running as a non-root user
 - Read-only pages: no login, no uploads, no database
